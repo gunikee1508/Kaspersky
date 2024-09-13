@@ -1,0 +1,284 @@
+VIDEO AULA DO READ.ME PLAY
+
+Instalo o kaspersky security center > avanço, etc...
+
+depois vem o Assistente de Instalação do Kaspersky security; 
+
+acesso o ip do servidor pelo navegador q tem o Kaspersky security center web 
+
+//////////
+
+Criação de Políticas -
+Servidor de administração > Políticas, aí temos as políticas.
+
+Em avançado > instalação remota temos os 'pacotes de instalação'; 
+
+Vamos criar uma nova política, que seria política de agente. Ao clicar em nova politica, escolhemos qual nova politica vamos criar. vamos criar para o 'agente de rede do kaspersky security center';  
+
+Ao avançar, podemos configurar algumas configurações; Uma boa prática é ativar a opção de 'proteger serviço do agente de rede contra remoção ou interrupção [...]' e marcar tbm a opção de 'usar senha de desinstalação' (para que o usuario nao remova o endpoint caso tenha acesso ao painel de controle) > avanço e vou para os 'repositorios' e deixo marcado todas as opçoes para que o agente verifique na maquina quais updates estão faltando, quais vulnerabilidades estão presentes, etc > avanço e defino a rede. o intervalo de sincronização é de quanto em quanto tempo a maquina vai tentar se comunicar com o servidor pra atualizaçao de politica, de tarefa, etc, o padrão é 15 min > avanço e pede o 'gerenciamento de reinicio', vamos colocar para não reiniciar para evitar que seja reiniciado sem o consentimento do usuario, ou perguntar ao usuario o que fazer (a cada 5 min ou mais/menos abre popup perguntando) > depois vem o 'Grupo Alvo' e coloco 'Dispositivos gerenciados' pq é uma politica raiz > avanço e torno a política ativa ou inativa, no caso, ativa.
+
+Criou-se a política, e temos mais configuraçoes a fazer; 
+
+vamos criar outra política de grupo, agora para endpoint (Kaspersky endpoint security for windows); vou avançando, ao perguntar 'modo de criaçao de política' perguntará se vai criar política com config padrão ou definir configuraçoes da politica no assistente; 
+
+Depois, crio política para Windows Server; 
+
+Ao ir na maquina (tem em 'dispositivos gerenciados') > propriedades > em 'informaçoes do sistema' tenho 'registro de hardware', 'registro de aplicativos' (inventário de software) > atualizaçoes disponiveis (pelo windows update), vulnerabilidades de software, etc. 
+
+//////////////
+
+Criação de Pacotes de Instalação - 
+
+Faremos a criação dos pacotes de instalação para os deploys dos endpoints; 
+
+Vamos no site do Kaspersky e baixemos o console, o endpoint para windows workstation, versão para Windows Server (para servidores); 
+
+Vou no Servidor > Avançado > Instalação Remota > Pacotes de instalação
+
+Criar pacote de instalação > criar um pacote de instalaçao para um aplicativo da kaspersky > coloquemos nome 'kaspersky endpoint security', que será nosso WORKSTATION > seleciono o arquivo do WorkStation;  
+
+Ao instalar, verá q já tem o pacote instalado > propriedades > geral > 'caminho' já teremos o local onde foi instalado; Em 'configuraçoes' já temos algumas configuraçoes q já são pre configuradas por padrão; 
+
+Em 'chave de licença' eu coloco a chave para que, quando for instalado o aplicativo em alguma estação, já estará licenciado; mas posso criar uma tarefa para depois licenciar. 
+
+Agora crio outro pacote de licença: 'Kaspersky security windows server' > instalo e extraio o arquivo '.kud'
+
+ao instalar o do servidor > propriedades > settings e posso colocar algumas configuraçoes por padrão; 
+
+quando vou instalar novo pacote, posso criar um pacote de instalaçao para um arquivo executavel especificado, isto é, pacote de instalaçao de terceiros. digamos que queria distribuir deployment de uma aplicaçao em massa, do googel chrome, ou acrobat, etc. posso criar no console e distribuir as tarefas; 
+
+Resumindo
+Deploy: O ato específico de transferir e instalar o software em um ambiente.
+Deployment: O processo geral que engloba a preparação, execução e validação do deploy, garantindo que o software esteja pronto para uso.
+
+Endpoint
+O que é? No contexto da Kaspersky, um "endpoint" refere-se a qualquer dispositivo final em uma rede que precisa de proteção contra ameaças cibernéticas. Isso pode incluir computadores, laptops, servidores, smartphones e até mesmo dispositivos de rede como impressoras.
+
+Por que é importante? Cada endpoint é um ponto de entrada potencial para ameaças como vírus, malware e ataques de hackers. A proteção de endpoints é crucial porque esses dispositivos frequentemente armazenam dados sensíveis e são usados para acessar a internet e redes corporativas.
+
+Como funciona? O Kaspersky Endpoint Security é um software instalado em cada um desses dispositivos finais. Ele fornece proteção contra vírus, malware, ransomware e outras ameaças cibernéticas. Ele também pode incluir funcionalidades como controle de dispositivos, criptografia e monitoramento de atividades.
+
+2. Agente de Rede
+O que é? O "agente de rede" no contexto da Kaspersky é um componente que facilita a comunicação entre o servidor de gerenciamento (onde você controla e configura as políticas de segurança) e os endpoints (dispositivos protegidos) na sua rede.
+
+Por que é importante? O agente de rede ajuda a gerenciar e distribuir atualizações de segurança, políticas e configurações para todos os endpoints em uma rede. Ele atua como um intermediário que garante que todos os dispositivos recebam as atualizações necessárias e que a proteção seja aplicada consistentemente em toda a rede.
+
+Como funciona? O Kaspersky Security Center é o painel de controle onde você pode gerenciar a segurança de todos os seus endpoints. O agente de rede é instalado em um servidor ou em dispositivos intermediários e se comunica com esse centro de gerenciamento para distribuir configurações e atualizações para todos os endpoints na rede.
+
+Resumo
+Endpoint: Dispositivos individuais como computadores, laptops e smartphones que precisam de proteção contra ameaças. O software de segurança Kaspersky é instalado nesses dispositivos para protegê-los.
+
+Agente de Rede: Um componente que ajuda a gerenciar a comunicação e distribuição de políticas de segurança entre o servidor de gerenciamento e os endpoints na rede.
+
+Para alguém que nunca mexeu com Kaspersky antes, imagine o seguinte cenário:
+
+Endpoints são como as "casas" onde você mora e precisa de proteção (antivírus e segurança).
+Agente de Rede é como o "administrador de um condomínio" que garante que todas as casas recebam as mesmas regras e atualizações de segurança.
+
+////////////////////////////
+
+CURSO 2 - KASPERSKY ENDPOINT SECURITY FOR BUSINESS (https://youtu.be/XD_1igh3w4o) - 
+
+Esta plataforma unica contem:
+- Antimalware - tradficional e assistido em nuvem 
+
+- Segurança de dispositivos móveis - MDM mais agente de segurança móvel 
+
+- Gerenciamento de sistemas - incluindo gerenciamento de correçõpes 
+
+- Criptografia de dados - arquivos / pastas, disco completo 
+
+- Ferramentas de controle de endpoints - Controle de aplicativos, de dispositivos e da Web; 
+
+
+Todos esses blocos ditos anteriormente são administrador por meio de um único console de gerenciamento: kaspersky security center; 
+
+-> A licença 'CORE':
+
+São contemplados apenas recursos de antimalware + firewall do endpoint; A licença 'Core', hoje em dia, já não é mais suficiente para proteger tanto os 'EndPoints'; A maior parte para endpoints hoje é de 'Select'; 
+
+-> A licença SELECT: 
+
+Oferece alguns recursos que ajudam a proteger proativamente o 'EndPoint'. Temos: Segurança de endpoints móveis, gerenciamento de disposisitos móveis (MDM), Segurança de servidores de arquivos, controle de aplicativos, controle de dispositivos, controle da web, além do antimalware + firewall; com isto, podemos controlar quais aplicativos podem entrar em execuçao no PC, ou não, fazer controle de privilegios em cima do APP (oq determinado app pode fazer no seu endpoint, no seu SO), posso determinar se um pendrive pode ser montado e utilizado, etc. Com controle da web podemos estabelecer regras de acesso diretamente no endpoint (saindo do modelo tradicional que vc precisa de firewall de borda pra fazer filtro), e independente de onde o endpoint estiver (rede local, ou não), posso manter o controle do que o endpoint pode acessar; 
+
+Também posso inserir tanto em caráter de 'whitelist' quanto de 'blacklist', ou seja, permitir ou negar sites especificos. Este controle não é estabelecido por device (endpoint), posso estabelecer esta politica a nivel de grupo de usuarios ou um usuario (endpoint) em questão. Posso ter este controle pra controole de aplicativos, de dispositivos e de controle da web baseada em usuario. Ou seja, se um usuário logar numa máquina, a regra de usuário pode variar dependendo da configuraçao feita na política para um usuário, etc. 
+
+Ainda usando Select, posso proteger meus servidores de arquivos contra ransomware, por exemplo; Posso ter um bloco de segurança específico; 
+
+Ainda com o Select, posso ter a segurança de endpoints móveis e gerenciamento de dispositivos móveis (MDM). Temos tbm a segurança para Linux, iOS, etc. 
+
+-> A licença ADVANCED:
+
+Esta licença aborda tudo das outras licenças, mais: Criptografia de dados, gerenciamento de licenças, instalaçao de software, provisionamento de sistemas, gerenciamento de correções, verificação de vulnerabilidades. 
+
+Posso criptografar os endpoints a nível de pastas ou arquivos especificos ou a nível de disco inteiro, fazendo então se um endpoint tiver arquivos ou pastas criptografadas, aqueles arquivos ou pastas podem ser abertas somente quando a máquina estiver na rede corporativa; Ou no pré-boot da máquina seja exigido uma chave específica para que aquela chave seja inicializada. É ideal pq pra inicializar a máquina, no pré-boot tenha-se q colocar as credenciais necessárias; 
+
+Ainda na Advanced, posso trabalhar com gerenciamento. Posso trabalhar com 'provisionamento de sistemas' (Provisionamento de sistemas é o processo de preparar e configurar computadores e softwares para que eles funcionem e estejam prontos para uso, como instalar SOs, adicionar programas, etc), é configuravel a tal ponto de automatização de todo o processo de formatação de endpoints/estações de trabalho e instalação de aplicativos, via PXE (método para inicializar computadores através da Interface da Placa de Rede) por exemplo (isto é, via rede). Com o provisionamento de sistemas, posso realizar a automação de coisas que o Help Desk faz. 
+
+Temos também o gerenciamento de correções, ele faz a detecção de necessidades de atualização e correções de vulnerabilidades. O gerenciamento de correções tá linkado diretamente a verificação de vulnerabilidades. Com a advanced posso verificar essas vulnerabilidades e corrigir de forma automatizada e agendada, realizando as correções dessas vulnerabilidades e atualizações necessárias. 
+O kaspersky pode até ser um substituto do WSUS, ou seja, substituindo o windows server update services, trazendo isso para dentro do Kaspersky Security Center.
+
+Em relaçao ao recurso de gerenciamento de licenças, é possivel ativar um rastreio de licenciamento de softwares especificos no ambiente, ou seja, vc consegue utilizando o inventario de hardware disponivel no kaspersky, é possivel setar um licenciamento por ex de 35 windows server 2016. Eu posso setar a contagem de usos e emitir alerta caso estoure este número; Vc faz o tracking (Rastreio) de licenciamento, e quando chegar perto do limite ou qd estourar o limite nas configuraçoes de licenciamento de licenças dizendo q houve violação; 
+
+Posso realizar tbm instalações de software através do Kaspersky Security Center, ou seja, criar seu script de instalação silenciosa, para q seja através de uma GPO ou outra coisa pra fazer o deploy;  Na versão 'select' já é possivel fazer essas implementaçoes de software, mas é preciso automatizar o processo criando um script de automação, para então subir este pacote para o Kaspersky Security Center, e realizar essas implementações no seu Parque; 
+
+A Kasperksy disponibiliza um banco de dados de aplicativos, q voce so precisa selecionar qual aplicativo e versão que voce quer implementar de forma automatizada no seu ambiente, q basicamente ele baixa esse pacote automatizada com o script embutido para as versões suportadas por esse software de forma automatica. Então o pacote já fica pronto para ser distribuido por seu ambiente inteiro; 
+
+-> Licença 'Total' -> Contempla outros produtos, produtos que vão além da proteção de EndPoint; Com essa licença temos proteção antispam de borda, etc. Temos: Colaboração, Email, Gateway da Internet; O kaspersky já tem proteção avançada contra Email, temos proteção no Gateway da Internet, é possivel interconectar esta proteção a uma proteção de borda e fazer com que haja analisações de malware no tráfego que está ocorrendo; 
+
+Muitas das coisas que dizemos são baseadas em uma nuvem via Kaspersky Security Network (KSN), que é um banco de dados usado para seus produtos; 
+
+Criptografia de dados - Mantendo seus dados seguros, onde quer q eles estejam;
+
+Recursos de criptografia:
+- Arquivo/pasta ou disco completo
+- Transparente para os usuarios finais 
+- Integrado com o controle de aplicativos e o controle de dispositivos 
+
+Pode acessar um arquivo dentro da rede, mas fora da rede o arquivo estará protegido; 
+
+-> Recursos da solução para dispositivos móveis:
+Configuração/implementação: via sms, email ou cabo; 
+Segurança: antimalware, antiphishing, antispam 
+Antirroubo: localização por gps, bloqueio remoto 
+Conformidade com politicas: Definição de senha, aviso de desbloquei por jailbreak/rooting, imposiçao de configuraçoes
+Aplicativos: "Conteinerização", restrição de acesso a dados 
+Acesso a dados: 'criptografia de dados', limpeza remota; 
+
+-> Gerenciamento de sistemas:
+Provisionamento de sistemas: criar imagens, armazenar e atualizar, implementar 
+
+Gerenciamento de licenças: Controlar o uso, gerenciar renovaçoes, gerenciar a conformidade de licenças;
+
+Ferramentas remotas: instalar aplicativos, atualizar aplicativos, solucionar problemas 
+
+Verificação de vulnerabilidades: inventário de HW e SW, vários bancos de dados de vulnerabilidades
+
+Correções avançadas: correçoes priorizadas, opçoes de reinicialização 
+
+Controle de admissão na rede (NAC) => gerenciamento de políticas para convidados, portal para convidados; 
+
+-> Ferramentas de controle (de aplicativos, de dispositivos e da Web):
+Controle de dispositivos: tablet, pc, pendrive, etc 
+Controle da web: facebook, jogos, marketplaces, etc 
+Controle de aplicativos com listas brancas dinamicas: java, chrome, adobe, etc;  
+
+
+-> Email, gateway da Internet e colaboração (proteção abrangente da infraestrutura):
+Segurança para e-mail, para gateways de internet, e se colaboração (como SharePoint).
+
+Tem-se também a KSN (Kaspersky Security Network); 
+
+Posso usar o SQL Server Express em até 5000 dispositivos; 
+
+/////
+
+Quando uma licença é usada no Kaspersky, ela não se perde; 
+
+Caso seja necessario que se utilize um proxy para que o security center se comunique com a internet, precisa de acessos a servidores da Kaspersky, pra fazer vacinas, consultas necessárias na KSN, etc, preencho na tela da Kaspersky; 
+
+A tarefa criada em 'tasks', ao ir em propriedades > Settings > ai mostra o que ele contempla, em Installation Packages; 
+
+O 'Network Agent Package' faz o processo de comunicação do gerenciamento do endpoint, gerenciamento de comunicaçao, envio de alertas, etc. E depois que a máquina está gerada, faço a instalação do 'Kaspersky EndPoint Security For Windows'; 
+
+Na console do Kaspersky Security Center, temos o:
+
+- 'Managed Devices' -> que são os computadores gerenciados, que é onde as maquinas ficarão armazenadas, uma vez que elas sejam geridas. Ao dar botão direito nela > New > Group, posso criar uma estrutura de grupo, escolho o nome. No caso, ele colocou o nome 'Estacoes', e depois 'Servidores'. EM 'Estacoes', posso colocar 'ComBloqueio', e outro 'SemBloqueio', ou posso fazer departamental, criando outro dentro de 'Estacoes' chamado 'Financeiro', e, estrutural, dentro de 'Financeiro', crio chamado 'Contas-A-Pagar', 'Contas-A-Receber'.
+
+Em 'Managed Devices', temos as abas de políticas (Policies) e Tarefas (tasks); 
+
+Em 'tasks' são tarefas aplicadas a grupos, em 'Policies' (políticas) também; 
+A diferença é que as políticas vem da raiz dos computadores gerenciados, por padrão ele já criou política para o EndPoint (kaspersky endpoint security) e para o agente de rede (Kaspersky Security Center Network Agent); Tem uma aba ali escrito 'Inherited', que seria herança, isto é, de onde ele é herdado. Se tiver 'not inherited', é pq é da raiz do security center, mas se eu descer para o grupo 'Estacoes' que eu criei, terei uma política que foi herdada do 'Managed Devices' (computadores gerenciados). Ao ir em 'contas-a-pagar', será a mesma coisa; 
+
+Posso criar uma nova cadeia de política de heranças, etc. 
+
+Em 'Tasks' temos algumas tarefas criadas por padrão;  Mas são tarefas criadas a grupo, 'Group Tasks';
+
+Além das tarefas criadas a grupos, temos outras tarefas adicionais, em 'Tasks' no console, como por ex criadas por padrão, tipo 'Backup of administration server data', isto é, backup dos dados administrativos do servidor. Ao ir em propriedades, em 'schedule' temos agendamentos, e em 'settings' temos limite de numeros de backups a fazer; 
+
+Em 'Deploy Kaspersky EndPoint Security For Windows' no 'Install Application Remotely', é uma tarefa que criamos no QuickStart;
+
+----> A máquina pode vir de forma automatizada desde que haja uma configuraçao para que haja uma configuração para um grupo de computadores gerenciados; Em 'Managed Devices' > Devices, já temos uma maquina ali(no caso da aula, 'KASPERSKY', que já aparece como dispositivo gerenciado), pq no procsso de instalaçao do security center, ele já instala o agente de rede em si mesmo e se coloca no grupo de servidores gerenciados (managed devices). 
+
+Porém, no console, embaixo temos a aba 'Advanced' > Network Poll. Nesta aba, conseugimos determinar um metodo de varredura do ambiente, isto é, como detectar novas maquinas no ambiente. 
+
+E mais acima temos uma aba chamada 'Unassigned Devices', é onde aparecem os computadores que foram detectados através dos métodos configurados em 'Network poll', mas ainda não estão atribuidos a um grupo de computadores gerenciados (Managed Devices);
+
+Em 'Network Poll' > Ip Ranges > botoa direito > new > IP Range, daí posso adicionar novas ranges de endereçamento para descobertas; 
+
+Posso também explocar a estrutura do 'Active Directory' para descobrir novas maquinas, na aba de 'Active Directory', ou só o dominio detectado que vai me trazer as máquinas, em 'Domains'. 
+
+Uma vez detectado e colocada a máquina em Unassigned Devices, colocando botao direito sobre Network pool > propriedades > posso criar regras de nuvem para dispositivos, ou seja, configurar o comportamento de realocação de dispositivos no momento em que forem detectados na rede; Ao ir em 'Add', posso criar uma regra que posso automatizar a movimentaçao da maquina de Unassigned Devices a um grupo que eu especificar na regra; Em seguida, em 'Apply Rule', posso definir como este comportamento vai ocorrer (uma vez por dispositivo ou permanentemente). Posso escolher 'movimentar somente os q nao estiverem no grupo de administrador' e 'apply rule' > em 'applications' coloco as máquinas que precisam de tal sistema operacional; Em 'virtual machines' posso criar grupos de computadores gerenciados apenas para máquinas virtuais; 
+
+Uma vez criada a regra, e habilitada, será executada automaticamente, posso executar o move (mover) dela; 
+
+No grupo 'estacoes', fui em 'Policies' e copiei o Kasperksy endpoint security for windows, e colo. Ela ficará sem herança, e estará em cinza, pois a política não estará ativa;  Vou nas propriedades dele > marco 'active policy' e 'Inherit Settings from upper-level policy', q significa pra não herdar políticas superiores (herança); Quando ativar, a política q tinha antes deixará de existir pois só posso ter uma política por dispositivo; 
+
+Ao ir nesta política do endpoint no grupo 'estacoes' > propriedades > 'Advanced Threat Protection' (ATP) temos a parte que configuramos a parte da KSN, por padrão deixamos habilitado, ao abrir o 'cadeado' permitimos que isto seja configuravel pelo usuário q está lá, e ao fechar o cadeado, vc impõe, ou seja não permite que seja modificado; a flag (caixinha) voce habilita ou desabilita o recurso; 
+
+Em 'Behavior Detection' ele faz uma análise no comportamento das aplicações e tem a capacidade de detectar anomalias de comportamento; vc pode definir como o behavior detection pode trabalhar, terminar o programa, informar ou deletar arquivo (padrão é deletar arquivo); ele pode também, nesta mesma parte do behaviour, proteger pastas compartilhadas contra ransomware (em que tenta criptografar arquivos remotamente), o padrão é 'block connection', e voce pode adicionar exceções; 
+
+Em 'Exploit Prevention', padrão é deixar marcado para bloquear operação; 
+
+Em 'host intrusion prevention', trabalha categorizando aplicações, faz todo um processo de analise em cima das regras configuradas; Em 'settings' configuro as aplicações. Em 'application processing rules', posso marcar para confiar aplicaçoes que tem assinatura digital (trust applications that have a digital signature) e para deletar regras de controle para aplicaçoes que nao sao inicializadas por mais de 60 dias. 
+
+Em 'Remedation Engine', ideal é deixar habilitado; 
+
+- Em 'Essential Threat Protection', tratamos as configurações antimalware de fato; 
+Em 'File Threat Protection', é a proteçao de arquivos e componentes q residem na memoria, etc. 
+O padrão é desinfectar e deletar se desinfectar falhar; 
+Clica em 'Settings' e pode customizar a forma de trabalho; Ideal é proteger servidores q tem pastas compartilhadas. Em 'Perfomance' do settings tem o 'análise de heurística' (Heuristic Analysis), se as máquinas tiverem boa perfomance o ideal é colocar 'medium scan' para aumentar nivel proteçao, ou 'deep scan'; 
+Deixe marcado a opçao 'Scan only new and changed files', mantendo historico daquilo que ja foi analisado; 
+
+Em 'Web Threat Protection', vai proteger a navegação web. Em 'settings', no 'general' tem o padrão de proteção. em 'Trusted Web Addresses', podemos definir caso tenha um falso positivo, entoa posso definir um site confiavel, botando sua conta em risco; 
+
+Emn 'mail threat protection', vai escanear emails que estão entrando e saindo da sua caixa, em cima de IMAP, SMTP e POP3;
+Em 'settings' > 'general' temos pra configurar incoming e outgoing messages, isto é, entrada e saída de mensagens. Em 'attachment filter' posso customizar a extensão do anexo que voce quer varrer e como voce quer que se comporte; 
+
+Em 'Firewall' posso dizer como ele pode se comportar. Temos 'settings' do IPS (Host Intrusion prevention), ao clicar, em 'networks' é interessante adicionar redes confiáveis da minha rede interna, neste caso aí voce vai configurar as redes que vc confia, sendo redes locais e redes públicas; O Firewall aí vai servir para não fazer algumas análises e tratar as redes como confiáveis; Em 'Network packet rules' se trata ao comportamento de solicitaçoes das regras dos pacotes. Aí irá permitir ou bloquear algumas das regras;
+
+----> No momento em q voce implementa o Kaspersky EndPoint Security, ele substitui o firewall do windows. Ou seja, vc passa a nao ter mais que configurar o firewall. Se vc tiver com o kaspersky endpoint security, o kaspersky vai ser o firewall, nao mais o windows firewall; 
+
+Em relação ao Windows Firewall, para q vc faça instalaçao do pacote, precisará permitir a entrada de alguns protocolos vindo do kaspersky security center, como 'CONEXÕES SMTP', para pastas compartilhadas, etc; 
+
+- Em 'Network Threat Protection', este recurso vai bloquear os hosts de destino ou de origem de solicitaçoes de redes que nao estejam cadastrados no meu Firewall, q tenham comportamento estranho, por ex: pedidos de comunicaçao q nao se de redes confiaveis nem locais, ele vai cadastrar no blacklist; Nesta aba, é possivel adicionar 'exclusões'; 
+
+- Em 'BadUSB Attack Prevention', é usado pra prevenir o compromentimento de devices de USB, q possam emular um teclado. habilite por padrão. 
+
+Em 'Security Controls' > 'Application Control', podemos criar listas de bloqueios e de liberaçao de aplicativos inventariados no meu ambiente, baseado listagem de aplicativos; Então seleciono o Application Control Mode 'White List' ou 'Black List', clico em 'Add', posso criar baseada em uma categoria específica, e em 'Add' na aba aberta posso selecionar um usuário específico, selecionar 'Deny for other users' eu negaria para outros usuários, etc... 
+Posso criar uma serie de regras em cima de categorias q eu crie. Rapidamente a categoria é criada no Security Center; Basta então selecionar a caixa de 'Application Control', add, e seleciono categoria, etc. 
+
+Em 'Device Control' realiza os bloqueios e as liberaçoes de tipos de dispositivos especificos, como HDS, CDS, Pendrives, etc; =====>!!!! Uma configuraçao padrão q é interessante ser realizada. Em 'Types of Devices', clica com botao direito no dispositivo (pendrive é Removable Drives), e posso bloquear dispositivos removiveis, e em 'Trusted Devices' posso confiar dispositivos especificos que foram inventariados pelo Kaspersky. Ou seja, insere pendrive em maquina q esteja inserida pelo Kaspersky, este pendrive será inventariado, e irá aparecer como dispositivo confiavel, e posso adicionar este pendrive confiavel pra uma maquina especifica ou pra um grupo de usuarios específicos ou usuários específicos;  
+
+Posso tbm permitir leitura de pendrives para um grupo especifico, botao direito no 'Removable Drivers' > Allow, e posso permitir para 'Everyone' somente leitura, mas para um usuario especifico permitir 'Read' e 'Write'; Posso criar tbm 'Schedules', isto é, em tal horario vai estar liberado o uso do pendrive; 
+
+Ainda em 'type of devices', lá embaixo, posso selecionar 'allow request for temporary access', ou seja, liberar para acesso temporário; 
+
+- Em 'Web Control', posso criar uma regra de acesso à Internet. Filter Content posso agendar por tipo de categoria (By content categorias and types of data), ai posso bloquear tipo 'Software, audio, video', bloqueando 'torrents', 'file sharing', 'audio and video', anonymizers, banners, violence, adult content, etc. Posso bloquear por tipos de dados. 
+Posso aplicar isto para addresses (endereços) individuais, ou para todos endereços, e posso especificar para especificar para alguns usuarios ou grupos ou para todos usuários/grupos (Everyone); 
+
+Tanto no 'Firewall' quanto no 'Web Control', temos uma ordem para execuçao das liberaçoes e bloqueios; 
+
+- Em 'Endpoint Sensor', ele permite a conexão direta do Kasperksy Anti Targeted Attack Platform, ou seja, o 'KATA'. Você então especifica o endereço do KATA para que este endpoint reporte ao sensor do KATA o seu comportamento.
+
+Em 'Local Tasks' são tarefas locais, o que vou permitir meu usuario executar ou não, oque vou deixar de fazer em relaçao as tarefas. 
+
+- EM 'General Settings':
+Em 'Applications Settings' temos 'Operation Mode', ou seja, modo de operação... se vai inicializar junto com o windows. em 'enable Advanced disinfection technology' é bem especifico pq, se ele nao conseguir desinfectar, ele reboota a máquina; 
+Em 'Self-Defense' é importante deixar tudo habilitado; Se um dia voce precisar configurar algo no cliente, é importante desabilitar a parte de 'Disable External management of the system services', pois ele não deixa movimentar interface do kaspersky, quando voce ta acessando remoto na máquina, ou seja, vc consegue mexer em toda maquina, mas no Kaspersky voce nao mexe; 
+
+Em 'Interface' > 'Password protection' > settings > é importante q se coloque um usuario e senha, como 'suporte' e senha 'algumasenha', pra evitar que os usuarios desabilitem a proteção da máquina, e marque tudo em 'password scope'; 
+
+Após feito tudo isso, temos nossa política de EndPoint configurada; 
+
+---> Política de Agente de Rede (Kaspersky Security Center Network Agent): 
+
+Volta pro grupo 'estacoes' > policies > Kaspersky Security Center Network Agent > botao direito > propriedades: 
+
+Em 'settings', marque 'Use uninstall password', e coloque uma senha para que não seja permitida a remoção do produto da máquina; 
+
+No mais, não tem muito o que fazer no agente de rede; 
+
+Agora, vou no grupo 'Estacoes' > aba 'Tasks', e vamos criar tarefas de implementaçao de produto > 'Create a task' > 'kaspersky security center 10 administration server' > advanced > Install application remotely. Next > seleciono o pacote de instalação 'Kaspersky Security Center Network Agent'. Next > no caso da video aula, o objetivo é em maquinas que nao se tem o agente de rede, entao deixo marcado apenas 'using operation system resources by means of administration server' e 'do not install application if it is already installed' > coloco para 'do not restart device' (nao reiniciar a maquina) > ao pedir uma conta, coloco uma 'account required', coloco uma conta com privilégio administrativo para fazer na maquina remota que eu preciso > next > scheduled start (agendamento, executar a cada tal horas, imediato, etc) > escolho o nome da tarefa, no caso, 'Network Agent - Instalação' > botao direito nela > start, e agora ela irá executar a cada 2 horas (pois ele configurou assim na hora da criaçao); 
+
+Agora, deve ser instalado no que estiver em 'Devices' em 'Estacoes'; 
